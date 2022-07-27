@@ -118,7 +118,7 @@
                         <li> <a class="waves-effect waves-dark" href="<?= site_url('Pakaian/?role=').$user['role'] ?>" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Pakaian</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="table-basic.html" aria-expanded="false"><i
+                        <li> <a class="waves-effect waves-dark" href="<?= site_url('Penjualan/')?>" aria-expanded="false"><i
                                     class="fa fa-table"></i><span class="hide-menu">Penjualan</span></a>
                         </li>
                         <div class="text-center mt-4">
@@ -129,10 +129,13 @@
                         <?php } else { ?>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="<?= site_url('Profil/') ?>" aria-expanded="false"><i
-                                    class="fa fa-user"></i><span class="hide-menu">Profil</span></a>
+                                    class="fa fa-user-circle-o"></i><span class="hide-menu">Profil</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="<?= site_url('Pakaian/?role=').$user['role'] ?>" aria-expanded="false"><i
-                                    class="fa fa-user-circle-o"></i><span class="hide-menu">Pakaian</span></a>
+                        <li> <a class="waves-effect waves-dark" href="<?= site_url('Pakaian') ?>" aria-expanded="false"><i
+                                    class="fa fa-home"></i><span class="hide-menu">Pakaian</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="<?= site_url('Pemesanan') ?>" aria-expanded="false"><i
+                                    class="fa fa-shopping-basket"></i><span class="hide-menu">Keranjang</span></a>
                         </li>
                         <div class="text-center mt-4">
                           <a class="btn waves-effect waves-light btn-danger hidden-md-down text-white"

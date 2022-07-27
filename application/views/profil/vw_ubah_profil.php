@@ -17,6 +17,7 @@
                   <h4 class="card-title">Form Ubah Profil</h4>
                   <h6 class="card-subtitle">Mengubah data dari Profil</h6>
                   <form class="mt-4" method="POST" enctype="multipart/form-data">
+
                     <input type="hidden" name="id" value="<?= $user['id']; ?>">
                         <div class="form-group">
                             <label for="nama">Nama</label>
@@ -34,7 +35,6 @@
                             <img src="<?= base_url('assets/img/profil/') . $user['gambar']; ?>" style="width: 100px;" class="img-thumbnail">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" name="gambar" id="gambar">
-                                <label for="gambar" class="custom-file-label">Choose File</label>
                                 <?= form_error('gambar', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>

@@ -80,7 +80,7 @@ class Pakaian extends CI_Controller
     function edit($id)
     {
         $data['judul'] = "Halaman Edit pakaian";
-        $data['pakaian'] = $this->Pakaian_Model->getById($id);
+        $data['editpakaian'] = $this->Pakaian_Model->getById2($id);
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->form_validation->set_rules('nama', 'Nama', 'required', ['required' => 'Nama Pakaian Wajib di isi']);
         $this->form_validation->set_rules('stok', 'Stok', 'required', ['required' => 'Stok Wajib di isi']);

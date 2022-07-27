@@ -17,6 +17,7 @@
                   <h4 class="card-title">Form Ubah Pakaian</h4>
                   <h6 class="card-subtitle">Mengubah data dari pakaian</h6>
                   <form class="mt-4" method="POST" enctype="multipart/form-data">
+                  <?php foreach ($editpakaian as $pakaian){?>
                     <input type="hidden" name="id" value="<?= $pakaian['id']; ?>">
                         <div class="form-group">
                             <label for="nama">Nama</label>
@@ -52,13 +53,13 @@
                             <img src="<?= base_url('assets/img/pakaian/') . $pakaian['gambar']; ?>" style="width: 100px;" class="img-thumbnail">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" name="gambar" id="gambar">
-                                <label for="gambar" class="custom-file-label">Choose File</label>
                                 <?= form_error('gambar', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
                         <a class="btn waves-effect waves-light btn btn-secondary btn btn-outline-secondary" href="<?= base_url() ?>/Pakaian"></i> Cancel</a>
                         <button type="submit" name="tambah"  class="btn waves-effect waves-light btn btn-success btn btn-outline-success">Ubah Pakaian</button>
-                    </form>
+                    <?php } ?>
+                      </form>
                 </div>
             </div>
 		</div>

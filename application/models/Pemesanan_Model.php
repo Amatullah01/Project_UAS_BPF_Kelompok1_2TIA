@@ -1,9 +1,9 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pakaian_Model extends CI_Model
+class Pemesanan_Model extends CI_Model
 {
-	public $table = 'pakaian';
-	public $id = 'pakaian.id';
+	public $table = 'pesanan';
+	public $id = 'pesanan.id';
 
 	public function __construct()
 	{
@@ -24,13 +24,6 @@ class Pakaian_Model extends CI_Model
 		$query = $this->db->get();
 		return $query->result_array();
 	}
-	public function getById2($id)
-	{
-		$this->db->from($this->table);
-		$this->db->where('id', $id);
-		$query = $this->db->get();
-		return $query->result_array();
-	}
 
 	public function update($where, $data)
 	{
@@ -40,7 +33,7 @@ class Pakaian_Model extends CI_Model
 
 	public function insert($data)
 	{
-		$this->db->insert($this->table, $data);
+		$this->db->insert('pesanan', $data);
 		return $this->db->insert_id();
 	}
 
