@@ -7,6 +7,10 @@
                             <li class="breadcrumb-item active">Tabel Penjualan</li>
                         </ol>
                     </div>
+					<div class="col-md-7 align-self-center">
+                        <a class="btn waves-effect waves-light btn btn-info pull-right btn btn-outline-primary"
+						href="<?= base_url() ?>Penjualan/export"><i class="fa fa-file-pdf-o"></i> Laporan Penjualan</a>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -32,20 +36,20 @@
                                         </thead>
                                         <tbody>
 										<?php $i = 1; ?>
-										<?php foreach ($penjualan as $pe) : ?>
+										<?php foreach ($penjualan as $pu) : ?>
 											<tr>
 												<td><?= $i; ?>.</td>
-												<td><?= $pe['id']; ?></td>
-												<td><?= $pe['total_bayar']; ?></td>
-												<td><?= $pe['tanggal']; ?></td>
-												<td><?= $pe['alamat']; ?></td>
-												<td><?= $pe['pembayaran']; ?></td>
-												<td><img src="<?= base_url('assets/img/checkout/') . $pe['gambar']; ?>" style="width: 100px;" class="img-thumbnail"></td>
-												<td><?= $pe['pembayaran']; ?></td>
-												<td><?= $pe['status']; ?></td>
+												<td><?= $pu['id']; ?></td>
+												<td><?= $pu['total_bayar']; ?></td>
+												<td><?= $pu['tanggal']; ?></td>
+												<td><?= $pu['alamat']; ?></td>
+												<td><?= $pu['pembayaran']; ?></td>
+												<td><img src="<?= base_url('assets/img/checkout/') . $pu['gambar']; ?>" style="width: 100px;" class="img-thumbnail"></td>
+												<td><?= $pu['keterangan']; ?></td>
+												<td><?= $pu['status']; ?></td>
 												<td>
-													<a href="<?= base_url('Penjualan/hapus/') . $pe['id']; ?>" class="btn waves-effect waves-light btn btn-outline-danger"><i class="fa fa-trash"></i> Delete</a>
-													<a href="<?= base_url('Penjualan/edit/') . $pe['id']; ?>" class="btn waves-effect waves-light btn btn-outline-warning"><i class="fa fa-pencil"></i> Update</a>
+													<a href="<?= base_url('Penjualan/edit/') . $pu['id']; ?>" class="mt-3 btn waves-effect waves-light btn btn-outline-success"><i class="fa fa-pencil"></i> Update</a><br>
+													<a href="<?php echo base_url('Penjualan/detail_admin'); ?>?id=<?= $pu['id'] ?>" class="mt-3 btn waves-effect waves-light btn btn-outline-warning"><i class="fa fa-search"></i> Detail</a>
 												</td>
 											</tr>
 										<?php $i++; ?>

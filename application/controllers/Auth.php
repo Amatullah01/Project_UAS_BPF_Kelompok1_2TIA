@@ -86,9 +86,9 @@ Akunmu telah berhasil terdaftar, Silahkan Login! </div>');
                 ];
                 $this->session->set_userdata($data);
                 if ($user['role'] == 'Admin') {
-                    redirect('Pakaian');
+                    redirect('Dashboard');
                 } else {
-                    redirect('Profil');
+                    redirect('Pakaian');
                 }
             } else {
                 $this->session->set_flashdata('message', '<div  class="title" style="font-size: 15px;" role="elert">

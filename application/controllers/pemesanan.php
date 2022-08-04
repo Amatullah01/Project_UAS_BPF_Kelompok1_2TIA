@@ -46,16 +46,16 @@ class pemesanan extends CI_Controller
         $this->db->query("UPDATE pakaian SET stok = stok - 1 WHERE id =".$idPakaian);  
 
         $this->keranjang->insert($data);
-        redirect('pemesanan');
+        redirect('Pakaian');
     }
-    public function hapus($id){
+    public function hapus($id,$idPakaian){
        
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->result_array();
         $iduser;
         foreach($user as $a){
             $iduser = $a['id'];
         }
-        $this->db->query("UPDATE pakaian SET stok = stok + 1 WHERE id =".$id);  
+        $this->db->query("UPDATE pakaian SET stok = stok + 1 WHERE id =".$idPakaian);  
         $this->keranjang->delete($iduser,$id);
         redirect('pemesanan');
        
@@ -90,8 +90,28 @@ class pemesanan extends CI_Controller
             'keterangan' => $this->input->post('keterangan'),
             'gambar' =>  $_FILES['gambar']['name']
         ];
-        var_dump($data);
+       
         $this->db->insert('pesanan', $data); 
+        $invoice = $this->keranjang->getby($iduser);
+        $id_pesanan = $this->db->query("SELECT (MAX(id)) as 'idpesanan'from pesanan")->result_array();
+        $p_in ;
+        foreach($id_pesanan as $b){
+           $p_in= $b['idpesanan'];
+        }
+        $p_invoice;
+        foreach($invoice as $a){
+            $datainvoice = [
+                'id_pesanan' => $p_in ,
+                'id_user' => $a['id_user'] ,
+                'id_pakaian' =>$a['id_pakaian'] ,
+                'jumlah' => 1 ,
+                'total' => $this->input->post('bayar')
+            ];
+            var_dump($datainvoice);
+            $this->db->insert('detail_pesanan', $datainvoice); 
+        }
+       
+
         $this->keranjang->delete($iduser);
       
             $config['allowed_types'] = 'gif|jpg|png';

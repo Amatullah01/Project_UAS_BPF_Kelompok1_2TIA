@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+use Dompdf\Dompdf;
+
 class Penjualan extends CI_Controller
 {
     public function __construct()
@@ -8,6 +10,7 @@ class Penjualan extends CI_Controller
         parent::__construct();
         //is_logged_in();
         $this->load->model('Penjualan_Model');
+        $this->load->model('Detail_Model');
     }
 
     public function index()
@@ -24,47 +27,6 @@ class Penjualan extends CI_Controller
             $this->load->view("layout/header", $data);
             $this->load->view("penjualan/vw_penjualan", $data);
             $this->load->view("layout/footer", $data);
-    }
-
-    public function tambah()
-    {
-        $data['judul'] = "Halaman Tambah Pakaian";
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['Pakaian'] = $this->Penjualan_Model->get();
-        $this->form_validation->set_rules('nama', 'Nama Pakaian', 'required', ['required' => 'Nama Pakaian Wajib di isi']);
-        $this->form_validation->set_rules('stok', 'Stok', 'required', ['required' => 'Stok Pakaian Wajib di isi']);
-        $this->form_validation->set_rules('size', 'Size', 'required', ['required' => 'Size Wajib di isi']);
-        $this->form_validation->set_rules('harga', 'Harga', 'required', ['required' => 'Harga Wajib di isi']);
-        $this->form_validation->set_rules('detail', 'Detail', 'required', ['required' => 'Detail Wajib di isi']);
-        if ($this->form_validation->run() == false) {
-            $this->load->view("layout/header", $data);
-            $this->load->view("penjualan/vw_tambah_penjualan", $data);
-            $this->load->view("layout/footer");
-        } else {
-            $data = [
-                'nama' => $this->input->post('nama'),
-                'stok' => $this->input->post('stok'),
-                'size' => $this->input->post('size'),
-                'harga' => $this->input->post('harga'),
-                'detail' => $this->input->post('detail'),
-            ];
-            $upload_image = $_FILES['gambar']['name'];
-            if ($upload_image) {
-                $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size'] = '2048';
-                $config['upload_path'] = './assets/img/pakaian/';
-                $this->load->library('upload', $config);
-                if ($this->upload->do_upload('gambar')) {
-                    $new_image = $this->upload->data('file_name');
-                    $this->db->set('gambar', $new_image);
-                } else {
-                    echo $this->upload->display_errors();
-                }
-            }
-            $this->Penjualan_Model->insert($data, $upload_image);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Pakaian Berhasil Ditambah!</div>');
-            redirect('Pakaian/?role=Admin');
-        }
     }
 
     function edit($id)
@@ -110,17 +72,40 @@ class Penjualan extends CI_Controller
         }
     }
 
-    public function hapus($id)
+    function detail()
     {
-        $this->Penjualan_Model->delete($id);
-        $error = $this->db->error();
-        if ($error['code'] != 0) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"><i class="icon
-			fas fa-info-circle"></i>Data Penjualan tidak dapat dihapus (sudah berelasi)!</div>');
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"><i
-			class="icon fa fa-check-square"></i> Data Penjualan Berhasil Dihapus!</div>');
-        }
-        redirect('Penjualan/');
+        $id = $_GET['id'];
+		$data['judul'] = "Halaman Detail Pembelian User";
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['pembelian'] = $this->Penjualan_Model->getById2($id);
+		$this->load->view("layout/header", $data);
+		$this->load->view("profil/detail_beli", $data);
+		$this->load->view("layout/footer", $data);
+    }
+
+    function detail_admin()
+    {
+        $id = $_GET['id'];
+		$data['judul'] = "Halaman Detail Pembelian User";
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['penjualan'] = $this->Penjualan_Model->getById2($id);
+        $data['detail'] = $this->Detail_Model->getById($id);
+		$this->load->view("layout/header", $data);
+		$this->load->view("penjualan/vw_detail_penjualan", $data);
+		$this->load->view("layout/footer", $data);
+    }
+
+
+    public function export()
+    {
+        $dompdf = new Dompdf();
+        $this->data['all_jual'] = $this->Penjualan_Model->get();
+        $this->data['title'] = 'Laporan Data Penjualan';
+        $this->data['no'] = 1;
+        $dompdf->setPaper('A4', 'Landscape');
+        $html = $this->load->view('penjualan/report', $this->data, true);
+        $dompdf->load_html($html);
+        $dompdf->render();
+        $dompdf->stream('Laporan Data Penjualan Tanggal ' . date('d F Y'), array("Attachment" => false));
     }
 }

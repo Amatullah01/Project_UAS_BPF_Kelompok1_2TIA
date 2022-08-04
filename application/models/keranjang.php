@@ -24,7 +24,7 @@ class keranjang extends CI_Model
         $this->db->from($this->table);
         $this->db->where('id_user',$id);
         $query = $this->db->get();
-        return $query->row_array();
+        return $query->result_array();
     }
     public function update($where, $data)
     {
@@ -36,10 +36,10 @@ class keranjang extends CI_Model
         $this->db->insert($this->table, $data);
       
     }
-    public function delete($id,$idpakaian)
+    public function delete($id)
     {
         $this->db->where('id_user', $id);
-        $this->db->where('id_pakaian', $idpakaian);
+       
         $this->db->delete($this->table);
         return $this->db->affected_rows();
     }   

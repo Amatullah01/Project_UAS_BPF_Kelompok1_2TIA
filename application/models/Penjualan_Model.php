@@ -9,14 +9,23 @@ class Penjualan_Model extends CI_Model
 	{
 		parent::__construct();
 	}
-
+	
 	public function get()
 	{
-		$this->db->from($this->table);
+		$this->db->select('p.*,r.nama as nama');
+		$this->db->from('pesanan p');
+		$this->db->join('user r', 'p.id_user = r.id');
 		$query = $this->db->get();
 		return $query->result_array();
 	}
-
+	public function getByUser()
+	{
+		$id = $this->session->userdata('id');
+		$this->db->from($this->table);
+		$this->db->where('id_user', $id);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 	public function getById($id)
 	{
 		$this->db->from($this->table);
@@ -24,7 +33,23 @@ class Penjualan_Model extends CI_Model
 		$query = $this->db->get();
 		return $query->result_array();
 	}
-
+	
+    public function getById2($id)
+	{
+		$this->db->from($this->table);
+		$this->db->where('id', $id);
+		$query = $this->db->get();
+		return $query->row_array();
+	}
+	public function getById3($id)
+    {
+        $this->db->select('p.*,r.nama as nama, p.nama as pakaian');
+        $this->db->from('pesanan p');
+        $this->db->join('user r', 'p.id_user = r.id');
+        $this->db->where('p.id', $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 	public function update($where, $data)
 	{
 		$this->db->update($this->table, $data, $where);

@@ -54,7 +54,7 @@
                                 <label for="gambar" class="custom-file-label">Choose file</label>
                             </div>
                         </div>
-                        <a class="btn waves-effect waves-light btn btn-secondary btn btn-outline-secondary" href="<?= base_url("/Pakaian") ?>">Cancel</a>
+                        <a class="btn waves-effect waves-light btn btn-secondary btn btn-outline-secondary" href="<?= base_url("Pakaian") ?>">Cancel</a>
                         <button type="submit" name="tambah" class="btn waves-effect waves-light btn btn-success btn btn-outline-success">Tambah Pakaian</button>
                     </form>
                 </div>

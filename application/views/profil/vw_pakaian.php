@@ -2,10 +2,9 @@
 <div class="container-fluid">
 	<div class="row page-titles">
 		<div class="col-md-5 align-self-center">
-			<h3 class="text-themecolor">Tabel Pakaian</h3>
+			<h3 class="text-themecolor">Home</h3>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-				<li class="breadcrumb-item active">Tabel Pakaian</li>
 			</ol>
 		</div>
 	</div>
@@ -28,7 +27,8 @@
 						<p class="mb-0 mt-3"><?= $pa['detail']; ?></p>
 						<div class="d-flex mt-3">
 							<div class="ms-auto align-self-center">
-								<a href="<?php echo base_url('pemesanan/pesan/').$pa['id']?>" ><i class="fa fa-shopping-basket"></i></a>
+								<a href="<?php echo base_url('pemesanan/pesan/').$pa['id']?>" ><i class="fa fa-shopping-basket fa-2x"></i></a>
+								<a href="<?php echo base_url('profil/detail_pakaian/')?>?id=<?= $pa['id'] ?>" ><i class="ms-4 fa fa-search fa-2x"></i></a>
 							</div>
 						</div>
 					</div>

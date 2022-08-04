@@ -38,7 +38,7 @@
 						
 							<div class="ms-auto align-self-center">
 								
-								<a href="<?php echo base_url('pemesanan/hapus/').$pa['id']?>" ><i class="fa fa-trash"></i></a>
+								<a href="<?php echo base_url('pemesanan/hapus/').$pa['id_keranjang'].'/'.$pa['id']?>" ><i class="fa fa-trash"></i></a>
 							</div>
 						</div>
 					</div>

@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="text" name="email" value="<?= $user['email']; ?>" class="form-control" id="email" 
-                            placeholder="Email profil">
+                            placeholder="Email profil"  readonly>
                             <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                         <div class="form-group">

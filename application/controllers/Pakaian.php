@@ -36,6 +36,17 @@ class Pakaian extends CI_Controller
         }
     }
 
+    function detail()
+    {
+        $id = $_GET['id'];
+		$data['judul'] = "Halaman Detail Pakaian";
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['pakaian'] = $this->Pakaian_Model->getById3($id);
+		$this->load->view("layout/header", $data);
+		$this->load->view("pakaian/vw_detail_pakaian", $data);
+		$this->load->view("layout/footer", $data);
+    }
+
     public function tambah()
     {
         $data['judul'] = "Halaman Tambah Pakaian";

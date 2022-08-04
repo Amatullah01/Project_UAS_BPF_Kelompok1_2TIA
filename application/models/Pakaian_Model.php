@@ -31,6 +31,14 @@ class Pakaian_Model extends CI_Model
 		$query = $this->db->get();
 		return $query->result_array();
 	}
+	
+    public function getById3($id)
+	{
+		$this->db->from($this->table);
+		$this->db->where('id', $id);
+		$query = $this->db->get();
+		return $query->row_array();
+	}
 
 	public function update($where, $data)
 	{

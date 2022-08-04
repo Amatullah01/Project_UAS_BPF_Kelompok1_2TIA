@@ -77,6 +77,22 @@
                                 <input type="text" class="form-control" placeholder="Search & enter"> <a
                                     class="srh-btn"><i class="fa fa-times"></i></a> </form>
                         </li>
+                        <?php
+                        if ($user['role'] == 'User') {
+                        ?>
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <a class="nav-link dropdown-toggle" href="<?= base_url('Profil/pembelian') ?>">
+                                    <i class="fa fa-history fa-fw"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <a class="nav-link dropdown-toggle" href="<?= base_url('Pemesanan') ?>">
+                                    <i class="fa fa-shopping-basket fa-fw"></i>
+                                </a>
+                            </li>
+                        <?php
+                        }
+                        ?>
                     </ul>
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
@@ -116,10 +132,10 @@
                                     class="fa fa-user-circle"></i><span class="hide-menu">User</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="<?= site_url('Pakaian/?role=').$user['role'] ?>" aria-expanded="false"><i
-                                    class="fa fa-table"></i><span class="hide-menu">Pakaian</span></a>
+                                    class="fa fa-file-image-o"></i><span class="hide-menu">Pakaian</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="<?= site_url('Penjualan/')?>" aria-expanded="false"><i
-                                    class="fa fa-table"></i><span class="hide-menu">Penjualan</span></a>
+                                    class="fa fa-shopping-bag"></i><span class="hide-menu">Penjualan</span></a>
                         </li>
                         <div class="text-center mt-4">
                           <a class="btn waves-effect waves-light btn-danger hidden-md-down text-white"
@@ -132,7 +148,7 @@
                                     class="fa fa-user-circle-o"></i><span class="hide-menu">Profil</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="<?= site_url('Pakaian') ?>" aria-expanded="false"><i
-                                    class="fa fa-home"></i><span class="hide-menu">Pakaian</span></a>
+                                    class="fa fa-home"></i><span class="hide-menu">Home</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="<?= site_url('Pemesanan') ?>" aria-expanded="false"><i
                                     class="fa fa-shopping-basket"></i><span class="hide-menu">Keranjang</span></a>

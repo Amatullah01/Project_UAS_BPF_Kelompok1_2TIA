@@ -7,7 +7,6 @@
 					<th>Nama</th>
 					<th>Harga</th>
 					<th>Gambar</th>
-
 				</tr>
 				<?php 
                 $harga = null;
@@ -18,7 +17,6 @@
 					<td>
 						<img src=" <?= base_url('assets/img/pakaian/') . $a['gambar']; ?>" width="50px" />
 					</td>
-
 				</tr>
 				<?php  $harga += $a['harga'] ?>
 				<?php endforeach; ?>

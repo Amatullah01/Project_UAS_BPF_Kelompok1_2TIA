@@ -46,7 +46,6 @@
 												<td>
 													<a href="<?= base_url('Pakaian/hapus/') . $pa['id']; ?>" class="btn waves-effect waves-light btn btn-outline-danger"><i class="fa fa-trash"></i> Hapus</a>
 													<a href="<?= base_url('Pakaian/edit/') . $pa['id']; ?>" class="btn waves-effect waves-light btn btn-outline-warning"><i class="fa fa-pencil"></i> Edit</a>
-                                                    <a href="<?= base_url('Pakaian/detail/')?>?id=<?= $pa['id'] ?>" class="btn waves-effect waves-light btn btn-outline-success"><i class="fa fa-search"></i> Detail</a>
 												</td>
 											</tr>
 										<?php $i++; ?>

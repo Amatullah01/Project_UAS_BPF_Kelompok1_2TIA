@@ -56,7 +56,7 @@
                                 <?= form_error('gambar', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                         </div>
-                        <a class="btn waves-effect waves-light btn btn-secondary btn btn-outline-secondary" href="<?= base_url() ?>/Pakaian"></i> Cancel</a>
+                        <a class="btn waves-effect waves-light btn btn-secondary btn btn-outline-secondary" href="<?= base_url('Pakaian') ?>"></i> Cancel</a>
                         <button type="submit" name="tambah"  class="btn waves-effect waves-light btn btn-success btn btn-outline-success">Ubah Pakaian</button>
                     <?php } ?>
                       </form>

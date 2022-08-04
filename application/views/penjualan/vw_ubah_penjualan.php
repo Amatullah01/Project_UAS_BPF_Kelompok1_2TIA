@@ -40,7 +40,7 @@
                             placeholder="Jenis Pembayaran" readonly>
                         </div>
                         <div class="form-group">
-                            <img src="<?= base_url('assets/img/checkout/') . $penjualan['gambar']; ?>" style="width: 100px;" class="img-thumbnail">
+                            <img src="<?= base_url('assets/img/checkout/') . $penjualan['gambar']; ?>" style="width: 500px;" class="img-thumbnail">
                         </div>
                         <div class="form-group">
                             <label for="keterangan">Keterangan</label>

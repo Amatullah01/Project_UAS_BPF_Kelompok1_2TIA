@@ -6,27 +6,34 @@ class Profil extends CI_Controller
 	public function __construct()
     {
         parent::__construct();
-        $this->load->model('User_model', 'userrole');
-        $this->load->model('Pakaian_model');
-        //$this->load->model('Keranjang_model');
-        //$this->load->model('Penjualan_model');
-        //$this->load->model('Detail_model');
-        $this->load->model('User_model');
+        $this->load->model('User_Model', 'userrole');
+        $this->load->model('User_Model');
+        $this->load->model('Penjualan_Model');
+        $this->load->model('Pakaian_Model');
     }
     function index()
     {
         $data['judul'] = "Halaman Profil";
         $data['user'] = $this->userrole->getBy();
-        //$data['jlh'] = $this->Keranjang_model->jumlah();
         $this->load->view("layout/header", $data);
         $this->load->view("profil/vw_profil", $data);
         $this->load->view("layout/footer");
+    }
+    function detail_pakaian()
+    {
+        $id = $_GET['id'];
+		$data['judul'] = "Halaman Detail Pakaian";
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['pakaian'] = $this->Pakaian_Model->getById3($id);
+		$this->load->view("layout/header", $data);
+		$this->load->view("profil/vw_detail_pakaian", $data);
+		$this->load->view("layout/footer", $data);
     }
 
     function edit($id)
     {
         //$data['judul'] = "Halaman Edit pakaian";
-        //$data['user'] = $this->User_Model->getById($id);
+        $data['user'] = $this->User_Model->getById($id);
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->form_validation->set_rules('nama', 'Nama', 'required', ['required' => 'Nama Pakaian Wajib di isi']);
         $this->form_validation->set_rules('email', 'Email', 'required', ['required' => 'Email Wajib di isi']);
@@ -62,13 +69,20 @@ class Profil extends CI_Controller
             redirect('Profil');
         }
     }
-
+    public function pembelian()
+    {
+        //$data['judul'] = "Data Pembelian";
+        $data['user'] = $this->User_Model->getBy();
+        $data['pembelian'] = $this->Penjualan_Model->getByUser();
+        $this->load->view('layout/header', $data);
+        $this->load->view('profil/pembelian_user', $data);
+        $this->load->view('layout/footer', $data);
+    }
     public function pakaian()
     {
         $data['judul'] = "Daftar Pakaian";
         $data['user'] = $this->userrole->getBy();
         $data['pakaian'] = $this->Pakaian_Model->get();
-        //$data['jlh'] = $this->Keranjang_model->jumlah();
         $this->load->view("layout/header", $data);
         $this->load->view("profil/vw_profil", $data);
         $this->load->view("layout/footer");
@@ -163,16 +177,6 @@ class Profil extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Pesanan Gagal dibuat!</div>');
             redirect('Profil/sembako');
         }
-    }
-    public function pembelian()
-    {
-        $data['judul'] = "Data Pembelian";
-        $data['user'] = $this->User_model->getBy();
-        $data['pembelian'] = $this->Penjualan_model->getByUser();
-        $data['jlh'] = $this->Keranjang_model->jumlah();
-        $this->load->view('layout/header', $data);
-        $this->load->view('profil/pembelian_user', $data);
-        $this->load->view('layout/footer', $data);
     }
     public function statusbeli($id)
     {
