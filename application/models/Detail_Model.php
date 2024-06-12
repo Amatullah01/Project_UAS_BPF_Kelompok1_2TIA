@@ -9,14 +9,14 @@ class Detail_Model extends CI_Model
     {
         parent::__construct();
     }
-    public function get()
-    {
-        $this->db->select('k.*,s.nama as nama, s.harga as harga');
-        $this->db->from('keranjang k');
-        $this->db->join('sembako s', 'k.id_buku = s.id');
-        $query = $this->db->get();
-        return $query->result_array();
-    }
+    // public function get()
+    // {
+    //     $this->db->select('k.*,s.nama as nama, s.harga as harga');
+    //     $this->db->from('keranjang k');
+    //     $this->db->join('sembako s', 'k.id_buku = s.id');
+    //     $query = $this->db->get();
+    //     return $query->result_array();
+    // }
     public function getById($id)
     {
         $this->db->select('dp.*,r.nama as nama, p.nama as pakaian');
@@ -42,13 +42,13 @@ class Detail_Model extends CI_Model
     {
         return $this->db->insert_batch($this->table, $data);
     }
-    function charts()
-    {
-        $this->db->select('d.*, s.nama as sembako, sum(d.jumlah) as jum');
-        $this->db->from('detail_penjualan d');
-        $this->db->join('sembako s', 'd.id_sembako = s.id');
-        $this->db->group_by('d.id_sembako');
-        $query = $this->db->get();
-        return $query->result_array();
-    }
+    // function charts()
+    // {
+    //     $this->db->select('d.*, s.nama as sembako, sum(d.jumlah) as jum');
+    //     $this->db->from('detail_penjualan d');
+    //     $this->db->join('sembako s', 'd.id_sembako = s.id');
+    //     $this->db->group_by('d.id_sembako');
+    //     $query = $this->db->get();
+    //     return $query->result_array();
+    // }
 }

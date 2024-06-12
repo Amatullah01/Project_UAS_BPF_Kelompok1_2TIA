@@ -27,7 +27,6 @@
 											<td>Nama User</td>
 											<td>Email</td>
 											<td>Role</td>
-											<td>Password</td>
 											<td>Gambar</td>
 											<td>Aksi</td>
 										</tr>
@@ -41,7 +40,6 @@
 												<td><?= $u1['nama']; ?></td>
 												<td><?= $u1['email']; ?></td>
 												<td><?= $u1['role']; ?></td>
-												<td><?= $u1['password']; ?></td>
 												<td><img src="<?= base_url('assets/img/profil/') . $u1['gambar']; ?>" style="width: 100px;" class="img-thumbnail"></td>
 												<td>
 													<a href="<?php echo base_url('User/detail'); ?>?id=<?= $u1['id'] ?>" class="btn waves-effect waves-light btn btn-outline-warning"><i class="fa fa-search"></i> Detail</a>
